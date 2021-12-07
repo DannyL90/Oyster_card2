@@ -30,17 +30,16 @@ describe OysterCard do
   describe "#touch_in and touch_out" do
     before do
       subject.top_up 10
+      subject.touch_in station
     end
 
       describe "#touch_in" do
 
-        it "touches in oyster card" do
-          subject.touch_in station
+        it "touches in oyster card" do  
           expect(subject.in_journey?).to eq true
         end
 
         it "remembers the entry station" do
-          subject.touch_in(station)
           expect(subject.entry_station).to eq station
         end
       end
@@ -48,7 +47,6 @@ describe OysterCard do
       describe "#touch_out" do
 
         it "touches out oyster card" do
-          subject.touch_in(station)
           expect(subject.touch_out).to eq nil
         end
 
@@ -57,7 +55,6 @@ describe OysterCard do
         end
 
         it "return true if 'In use'" do
-          subject.touch_in(station)
           expect(subject.in_journey?).to eq true
         end
 
